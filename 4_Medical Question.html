@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Questions Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .question {
+      margin-bottom: 32px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #007BFF;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .submit-btn-wrapper {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .submit-btn {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .toggle-style-2 {
+      display: inline-flex;
+      border: 1px solid #007BFF;
+      border-radius: 20px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    .toggle-style-2 input[type="radio"] {
+      display: none;
+    }
+    .toggle-style-2 label {
+      padding: 10px 20px;
+      cursor: pointer;
+      background: #f4f6f8;
+      color: #333333;
+      transition: background 0.3s ease;
+      margin-bottom: 0;
+    }
+    .toggle-style-2 input:checked + label {
+      background: #007BFF;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Medical Questions</h1>
+    <form>
+      <div class="question">
+        <label>(a) Any heart or circulatory disease or disorders?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="heart_disease_yes" name="heart_disease" />
+          <label for="heart_disease_yes">Yes</label>
+          <input type="radio" id="heart_disease_no" name="heart_disease" />
+          <label for="heart_disease_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(b) Any dermatological disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="dermatological_yes" name="dermatological" />
+          <label for="dermatological_yes">Yes</label>
+          <input type="radio" id="dermatological_no" name="dermatological" />
+          <label for="dermatological_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(c) Any endocrine disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="endocrine_yes" name="endocrine" />
+          <label for="endocrine_yes">Yes</label>
+          <input type="radio" id="endocrine_no" name="endocrine" />
+          <label for="endocrine_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(d) Any eye, ear, nose and throat disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="ent_disorder_yes" name="ent_disorder" />
+          <label for="ent_disorder_yes">Yes</label>
+          <input type="radio" id="ent_disorder_no" name="ent_disorder" />
+          <label for="ent_disorder_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(e) Any gastrointestinal disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="gastrointestinal_yes" name="gastrointestinal" />
+          <label for="gastrointestinal_yes">Yes</label>
+          <input type="radio" id="gastrointestinal_no" name="gastrointestinal" />
+          <label for="gastrointestinal_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(f) Any infectious or viral disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="infectious_yes" name="infectious" />
+          <label for="infectious_yes">Yes</label>
+          <input type="radio" id="infectious_no" name="infectious" />
+          <label for="infectious_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(g) Any muscular or skeletal disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="muscular_yes" name="muscular" />
+          <label for="muscular_yes">Yes</label>
+          <input type="radio" id="muscular_no" name="muscular" />
+          <label for="muscular_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(h) Any neurological disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="neurological_yes" name="neurological" />
+          <label for="neurological_yes">Yes</label>
+          <input type="radio" id="neurological_no" name="neurological" />
+          <label for="neurological_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(i) Any oncological disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="oncological_yes" name="oncological" />
+          <label for="oncological_yes">Yes</label>
+          <input type="radio" id="oncological_no" name="oncological" />
+          <label for="oncological_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(j) Any psychiatric or psychological disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="psychiatric_yes" name="psychiatric" />
+          <label for="psychiatric_yes">Yes</label>
+          <input type="radio" id="psychiatric_no" name="psychiatric" />
+          <label for="psychiatric_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(k) Any respiratory or lung disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="respiratory_yes" name="respiratory" />
+          <label for="respiratory_yes">Yes</label>
+          <input type="radio" id="respiratory_no" name="respiratory" />
+          <label for="respiratory_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(l) Any urological or reproductive organs disease or disorder?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="urological_yes" name="urological" />
+          <label for="urological_yes">Yes</label>
+          <input type="radio" id="urological_no" name="urological" />
+          <label for="urological_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(m) Any congenital disease or disorder present at or before birth?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="congenital_yes" name="congenital" />
+          <label for="congenital_yes">Yes</label>
+          <input type="radio" id="congenital_no" name="congenital" />
+          <label for="congenital_no">No</label>
+        </div>
+      </div>
+      <div class="question">
+        <label>(n) Any other accident, injury, disease or disorder not already disclosed?</label>
+        <div class="toggle-style-2">
+          <input type="radio" id="other_conditions_yes" name="other_conditions" />
+          <label for="other_conditions_yes">Yes</label>
+          <input type="radio" id="other_conditions_no" name="other_conditions" />
+          <label for="other_conditions_no">No</label>
+        </div>
+      </div>
+      <div class="submit-btn-wrapper">
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+    <script>
+     const params = new URLSearchParams(window.location.search);
+     const questionNumber = parseInt(params.get("noOfQuestions"));
+     document.querySelectorAll(".question").forEach((el, index) => {
+      if (index === questionNumber - 1) {
+      el.style.display = "block";
+      } else {
+      el.style.display = "none";
+      }
+      });
+    </script>
+</body>
+</html>

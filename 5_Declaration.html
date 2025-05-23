@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive UW Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+    .container {
+      background: #fff;
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .form-section {
+      margin-bottom: 30px;
+    }
+    .form-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+    .form-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .radio-group label {
+      font-weight: normal;
+    }
+    .conditional-section {
+      display: none;
+      padding: 20px;
+      background: #f9f9f9;
+      border-left: 4px solid #007BFF;
+      margin-top: 20px;
+    }
+
+    .toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .switch {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      margin-bottom: 0;
+      display: block;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px; width: 26px;
+      left: 4px; bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #007BFF;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    #toggle-label {
+      font-weight: bold;
+      color: #444;
+    }
+    .submit-btn-wrapper {
+        text-align: center;
+    }
+    .submit-btn {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="form-title">Interactive UW</h1>
+  <form id="uwForm">
+    <div class="form-section">
+        <p>Do you have any other conditions for you or anyone else under this question to disclose?</p>
+        <div class="toggle-wrapper">
+          <label class="switch" for="consent-toggle">
+            <input type="checkbox" id="consent-toggle" name="consent-toggle" title="Do you have any other conditions to disclose?">
+            <span class="slider round"></span>
+          </label>
+          <span id="toggle-label">No</span>
+        </div>
+      </div>
+
+    <div class="submit-btn-wrapper">
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const checkbox = document.getElementById('consent-toggle');
+  const label = document.getElementById('toggle-label');
+
+  checkbox.addEventListener('change', function () {
+    label.textContent = this.checked ? 'Yes' : 'No';
+  });
+</script>
+
+</body>
+</html>

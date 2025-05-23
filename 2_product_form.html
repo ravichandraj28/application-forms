@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Information - Page 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    .checkbox-group label {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .submit-btn-wrapper {
+      text-align: center;
+    }
+
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    @media screen and (max-width: 600px) {
+      fieldset {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">Product and Other Needed Information</h1>
+    <form>
+      <fieldset>
+        <legend>Product Details</legend>
+
+        <label>
+          Name of current insurer (if applicable):
+          <input type="text" name="current_insurer" />
+        </label>
+
+        <label>
+          Current policy number (if applicable):
+          <input type="text" name="policy_number" />
+        </label>
+
+        <label>
+          Start date you wish to have cover:
+          <input type="date" name="start_date" />
+          <small>* This date will be confirmed when issued on your certificate of insurance by your chosen insurance provider</small>
+        </label>
+
+        <label>
+          Area of Cover:
+          <select name="area_of_cover">
+            <option value="WW">WW</option>
+            <option value="WWE">WWE</option>
+            <option value="Regional">Regional</option>
+          </select>
+        </label>
+
+        <label>
+          IP and OP Selection:
+          <select name="ip_op_selection">
+            <option value="high">High Tier</option>
+            <option value="mid">Mid Tier</option>
+            <option value="low">Low Tier</option>
+          </select>
+        </label>
+
+        <div class="checkbox-group">
+          <span><strong>Additional modules (tick if applicable):</strong></span>
+          <label><input type="checkbox" name="modules" value="dental" /> Dental</label>
+          <label><input type="checkbox" name="modules" value="repat" /> Repatriation</label>
+          <label><input type="checkbox" name="modules" value="maternity" /> Maternity</label>
+        </div>
+
+        <label>
+          What Network are you interested in:
+          <input type="text" name="network_interest" />
+        </label>
+
+        <label>
+          Additional comments on product selection:
+          <textarea name="product_comments" rows="3" placeholder=""></textarea>
+        </label>
+      </fieldset>
+
+      <div class="submit-btn-wrapper">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+    <script>
+      document.getElementById('productForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      const formData = new FormData(event.target);
+      const data = {};
+
+           for (const [key, value] of formData.entries()) {
+        if (key === "modules") {
+          if (!data[key]) data[key] = [];
+          data[key].push(value);
+        } else {
+          data[key] = value;
+        }
+      }
+      console.log("Captured Form Data:", data);
+
+           alert("Form data captured. Check the console for details.");
+      });
+    </script>
+</body>
+</html>

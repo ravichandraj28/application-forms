@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insurance Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .submit-btn-wrapper {
+      text-align: center;
+    }
+
+    button, input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover, input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input.submit-btn {
+      max-width: 300px;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+      fieldset {
+        grid-template-columns: 1fr;
+      }
+
+      label {
+        width: 100%;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">Insurance Application Form</h1>
+    <form>
+      <fieldset>
+        <legend>Policy Holder (Mandatory)</legend>
+        <label>Title: <input type="text" name="ph_title"></label>
+        <label>First name: <input type="text" name="ph_first_name" required></label>
+        <label>Surname: <input type="text" name="ph_surname" required></label>
+        <label>Date of birth: <input type="date" name="ph_dob" required></label>
+        <label>Gender at birth:
+          <select name="ph_gender" id="ph_gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+        <label>Home country: <input type="text" name="ph_home_country"></label>
+        <label>Nationality: <input type="text" name="ph_nationality"></label>
+        <label>Principal country of residence: <input type="text" name="ph_country_residence"></label>
+        <label>Full address: <textarea name="ph_address"></textarea></label>
+        <label>Primary phone number: <input type="tel" name="ph_phone"></label>
+        <label>Email address: <input type="email" name="ph_email"></label>
+        <label>Occupation: <input type="text" name="ph_occupation"></label>
+        <label>Height (cm): <input type="number" name="ph_height"></label>
+        <label>Weight (kg): <input type="number" name="ph_weight"></label>
+        <label>Smoking status (per day): <input type="number" name="ph_smoking"></label>
+        <label>Alcohol status (per week): <input type="number" name="ph_alcohol"></label>
+        <div id="ph_lmp_container" class="hidden">
+          <label>LMP: <input type="date" name="ph_lmp"></label>
+        </div>
+        <label>Emirates ID number: <input type="text" name="ph_emirates_id"></label>
+        <label>Passport Number: <input type="text" name="ph_passport_number"></label>
+        <label>Passport Expiry Date: <input type="date" name="ph_passport_expiry"></label>
+        <label>Visa/Work Permit UID: <input type="text" name="ph_uid"></label>
+        <label>Salary Level:
+          <select name="ph_salary">
+            <option value="lsb">LSB</option>
+            <option value="above_lsb">Above LSB</option>
+            <option value="enough_for_family">Enough to cover family</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <div id="dependants-container"></div>
+      <button type="button" onclick="addDependant()">Add Dependant</button>
+      <div class="submit-btn-wrapper">
+        <input type="submit" value="Submit" class="submit-btn">
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+    let dependantCount = 0;
+    const maxDependants = 5;
+
+    function addDependant() {
+      if (dependantCount >= maxDependants) return;
+      dependantCount++;
+      const container = document.getElementById('dependants-container');
+      const depHTML = `
+        <fieldset id="dependant-${dependantCount}">
+          <legend>Dependant ${dependantCount}</legend>
+          <label>Relationship to policyholder: <input type="text" name="dep${dependantCount}_relation"></label>
+          <label>Title: <input type="text" name="dep${dependantCount}_title"></label>
+          <label>First name: <input type="text" name="dep${dependantCount}_first_name"></label>
+          <label>Surname: <input type="text" name="dep${dependantCount}_surname"></label>
+          <label>Date of birth: <input type="date" name="dep${dependantCount}_dob" onchange="checkDepAge(${dependantCount})"></label>
+          <label>Gender at birth:
+            <select name="dep${dependantCount}_gender" id="dep${dependantCount}_gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+          <label>Occupation: <input type="text" name="dep${dependantCount}_occupation"></label>
+          <label>Height (cm): <input type="number" name="dep${dependantCount}_height"></label>
+          <label>Weight (kg): <input type="number" name="dep${dependantCount}_weight"></label>
+          <div id="dep${dependantCount}_extraFields" class="hidden">
+            <label>Smoking status (per day): <input type="number" name="dep${dependantCount}_smoking"></label>
+            <label>Alcohol status (per week): <input type="number" name="dep${dependantCount}_alcohol"></label>
+            <div id="dep${dependantCount}_lmp_container" class="hidden">
+              <label>LMP: <input type="date" name="dep${dependantCount}_lmp"></label>
+            </div>
+          </div>
+          <label>Emirates ID number: <input type="text" name="dep${dependantCount}_emirates_id"></label>
+          <label>Passport Number: <input type="text" name="dep${dependantCount}_passport_number"></label>
+          <label>Passport Expiry Date: <input type="date" name="dep${dependantCount}_passport_expiry"></label>
+          <label>Visa/Work Permit UID: <input type="text" name="dep${dependantCount}_uid"></label>
+        </fieldset>
+      `;
+      container.insertAdjacentHTML('beforeend', depHTML);
+    }
+
+    function checkDepAge(depNum) {
+      const dobInput = document.querySelector(`[name=dep${depNum}_dob]`);
+      const genderInput = document.querySelector(`#dep${depNum}_gender`);
+      const extraFields = document.getElementById(`dep${depNum}_extraFields`);
+      const lmpField = document.getElementById(`dep${depNum}_lmp_container`);
+      const dob = new Date(dobInput.value);
+      const age = (new Date().getFullYear()) - dob.getFullYear();
+      if (age > 13) {
+        extraFields.classList.remove('hidden');
+        if (genderInput.value === 'female') {
+          lmpField.classList.remove('hidden');
+        }
+      } else {
+        extraFields.classList.add('hidden');
+        lmpField.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('ph_gender').addEventListener('change', function () {
+      const gender = this.value;
+      document.getElementById('ph_lmp_container').classList.toggle('hidden', gender !== 'female');
+    });
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault(); 
+
+    const formData = new FormData(this);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      if (data[key]) {
+        if (!Array.isArray(data[key])) {
+          data[key] = [data[key]];
+        }
+        data[key].push(value);
+      } else {
+        data[key] = value;
+      }
+    });
+
+    console.log('Captured Form Data:', data);
+
+    alert('Form data captured. Check console.');
+   }); 
+  </script>
+    
+</body>
+</html>

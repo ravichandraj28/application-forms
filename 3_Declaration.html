@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Declarations - Insurance Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .declaration-text {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    input[type="radio"] {
+      margin-right: 6px;
+    }
+
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+
+    .toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .switch {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      margin-bottom: 0;
+      display: block;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px; width: 26px;
+      left: 4px; bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #007BFF;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    #toggle-label {
+      font-weight: bold;
+      color: #444;
+    }
+.submit-btn-wrapper {
+    text-align: center;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-title">Declarations</h1>
+    <form>
+      <div class="declaration-text">
+        <p>Please be aware you are applying for a Fully medically underwriten policy</p>
+        <p>This means we assess your health history when considering your insurance application and likely terms of cover. If you have a pre-existing condition you must declare it within the following medical application questions.</p>
+        <p>A pre-existing condition is any medical condition, illness, or injury that existed before the start date of your policy. This includes any symptoms, diagnoses, treatments, or consultations that occurred prior to your policy's commencement. It is essential to declare all pre-existing conditions accurately and completely when applying for coverage. Failure to disclose such conditions may result in the denial of claims or the cancellation of your policy. Pre-existing conditions will be subject to full medical underwriting and if they are not disclosed, they will not be covered or other underwriting measures may apply,as outlined by the Dubai Health Authority.</p>
+                
+        <p><strong>Please do NOT disclose results of any genetic (DNA or RNA) tests</strong>, as these are not required for medical underwriting.</p>
+      </div>
+
+      <!-- <div class="form-group">
+        <label>Do you agree to have understood the pre-existing definition and consent to declare all relevant information?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="preexisting_consent" value="yes" required> Yes</label>
+          <label><input type="radio" name="preexisting_consent" value="no"> No</label>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <p><strong>Do you agree to have understood the pre-existing definition and consent to declare all relevant information?</strong></p>
+        <div class="toggle-wrapper">
+          <label class="switch" for="preexisting_toggle">
+            <input type="checkbox" id="preexisting_toggle" name="preexisting_consent" title="Consent to declare all relevant information">
+            <span class="slider round"></span>
+          </label>
+          <span id="toggle-label">No</span>
+        </div>
+      </div>
+
+      <div class="submit-btn-wrapper">
+        <input type="submit" value="Continue">
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+  const checkbox = document.getElementById('preexisting_toggle');
+  const label = document.getElementById('toggle-label');
+
+  checkbox.addEventListener('change', function () {
+    label.textContent = this.checked ? 'Yes' : 'No';
+  });
+</script>
+
+</body>
+</html>
